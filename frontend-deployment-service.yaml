@@ -5,7 +5,7 @@ metadata:
   labels:
     app: frontend
 spec:
-  replicas: 2  # Number of frontend pods to run
+  replicas: 1  # Number of frontend pods to run
   selector:
     matchLabels:
       app: frontend
