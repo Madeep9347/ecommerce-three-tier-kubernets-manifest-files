@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend
+spec:
+  replicas: 2  # Number of frontend pods to run
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: 842676005617.dkr.ecr.us-east-2.amazonaws.com/frontend:latest  # Replace with your frontend Docker image
+        ports:
+        - containerPort: 80  # Use 80 since the application is exposed on this port
+        env:
+        - name: BACKEND_URL
+          value: "http://backend-service:5000"  # Service name used by frontend to access backend
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: frontend
+  ports:
+    - port: 80  # Use 80 for the service to expose the application
+      targetPort: 80
+      protocol: TCP
