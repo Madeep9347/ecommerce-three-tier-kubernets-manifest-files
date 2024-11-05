@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 2  # Number of backend pods to run
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: 842676005617.dkr.ecr.us-east-2.amazonaws.com/backend:latest  # Replace with your backend Docker image
+        ports:
+        - containerPort: 5000
+        env:
+        - name: PORT
+          value: "5000"
+        - name: MONGO_URI
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: mongo_uri
+        - name: DB_NAME
+          value: "ecommerce"
+        - name: MYSQL_USER_HOST
+          value: "3.17.151.53"
+        - name: MYSQL_USER_USER
+          value: "admin"
+        - name: MYSQL_USER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: mysql_user_password
+        - name: MYSQL_USER_DB
+          value: "usernames"
+        - name: MYSQL_PAYMENT_HOST
+          value: "3.17.151.53"
+        - name: MYSQL_PAYMENT_USER
+          value: "admin"
+        - name: MYSQL_PAYMENT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: mysql_payment_password
+        - name: MYSQL_PAYMENT_DB
+          value: "ecommerce"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: backend
+  ports:
+    - port: 5000
+      targetPort: 5000
+      protocol: TCP
