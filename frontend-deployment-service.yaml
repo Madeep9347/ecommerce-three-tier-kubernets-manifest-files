@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: 842676005617.dkr.ecr.us-east-2.amazonaws.com/frontend:14  # Replace with your frontend Docker image
+        image: 842676005617.dkr.ecr.us-east-2.amazonaws.com/frontend:16  # Replace with your frontend Docker image
         ports:
         - containerPort: 80  # Use 80 since the application is exposed on this port
         env:
