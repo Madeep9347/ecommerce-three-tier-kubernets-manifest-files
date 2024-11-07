@@ -21,7 +21,7 @@ spec:
         - containerPort: 80  # Use 80 since the application is exposed on this port
         env:
         - name: BACKEND_URL
-          value: "http://afcfcdc6372704b0aa9cb098281b0da0-1331355765.us-east-2.elb.amazonaws.com:5000"  # Service name used by frontend to access backend
+          value: "http://backend-service:5000"  # Service name used by frontend to access backend
 
 ---
 apiVersion: v1
