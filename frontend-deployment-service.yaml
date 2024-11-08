@@ -21,7 +21,7 @@ spec:
         - containerPort: 80  # Use 80 since the application is exposed on this port
         env:
         - name: BACKEND_URL
-          value: "http://backend-service:5000"  # Service name used by frontend to access backend
+          value: "http://backend-service.webapps.svc.cluster.local:5000"  # Service name used by frontend to access backend
 
 ---
 apiVersion: v1
