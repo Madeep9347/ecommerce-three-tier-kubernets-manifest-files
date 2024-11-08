@@ -20,7 +20,7 @@ spec:
         ports:
         - containerPort: 80  # Use 80 since the application is exposed on this port
         env:
-        - name: BACKEND_URL
+        - name: REACT_APP_API_URL
           value: "http://backend-service.webapps.svc.cluster.local:5000"  # Service name used by frontend to access backend
 
 ---
