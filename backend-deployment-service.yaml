@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: madeep2669/ecommerce-backend:4
+        image: madeep2669/ecommerce-backend:5
         ports:
         - containerPort: 5000
         env:
