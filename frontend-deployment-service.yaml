@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: madeep2669/ecommerce-frontend:34  # Replace with your frontend Docker image
+        image: madeep2669/ecommerce-frontend:2
         ports:
         - containerPort: 80  # Use 80 since the application is exposed on this port
         env:
