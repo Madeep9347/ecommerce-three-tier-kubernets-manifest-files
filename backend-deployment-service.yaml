@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: 842676005617.dkr.ecr.us-east-2.amazonaws.com/backend:10  # Replace with your backend Docker image
+        image: madeep2669/ecommerce-backend:3  # Replace with your backend Docker image
         ports:
         - containerPort: 5000
         env:
@@ -30,9 +30,9 @@ spec:
         - name: DB_NAME
           value: "ecommerce"
         - name: MYSQL_USER_HOST
-          value: "3.142.249.132"
+          value: "mysql"
         - name: MYSQL_USER_USER
-          value: "admin"
+          value: "root"
         - name: MYSQL_USER_PASSWORD
           valueFrom:
             secretKeyRef:
@@ -41,16 +41,16 @@ spec:
         - name: MYSQL_USER_DB
           value: "usernames"
         - name: MYSQL_PAYMENT_HOST
-          value: "3.142.249.132"
+          value: "mysql"
         - name: MYSQL_PAYMENT_USER
-          value: "admin"
+          value: "root"
         - name: MYSQL_PAYMENT_PASSWORD
           valueFrom:
             secretKeyRef:
               name: backend-secrets
               key: mysql_payment_password
         - name: MYSQL_PAYMENT_DB
-          value: "ecommerce"
+          value: "payments"
 
 ---
 apiVersion: v1
