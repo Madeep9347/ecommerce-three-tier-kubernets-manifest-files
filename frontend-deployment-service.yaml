@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: 842676005617.dkr.ecr.us-east-2.amazonaws.com/frontend:34  # Replace with your frontend Docker image
+        image: madeep2669/ecommerce-frontend:34  # Replace with your frontend Docker image
         ports:
         - containerPort: 80  # Use 80 since the application is exposed on this port
         env:
         - name: REACT_APP_API_URL
-          value: "http://backend-service.webapps.svc.cluster.local:5000"  # Service name used by frontend to access backend
+          value: "http://backend-service.ecommerce.svc.cluster.local:5000"  # Service name used by frontend to access backend
 
 ---
 apiVersion: v1
